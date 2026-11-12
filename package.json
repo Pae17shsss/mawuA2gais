@@ -1,0 +1,12 @@
+{
+  "name": "xiaobu-kelas",
+  "version": "1.7.0",
+  "private": true,
+  "description": "Xiǎobù Kelas — PWA belajar Mandarin Taiwan. Sumber kode di src/app, lapisan V1.7 di peak.js.",
+  "scripts": {
+    "build": "node build.mjs build",
+    "cek": "node build.mjs cek",
+    "rilis": "node build.mjs rilis",
+    "uji": "node uji.mjs"
+  }
+}

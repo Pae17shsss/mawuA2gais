@@ -35,7 +35,9 @@ Dikerjakan sebagai lapisan baru `peak.js` + `peak.css` di atas `app.js`, plus li
 | 3 · Uji otomatis | **Selesai tanpa Node** — buka `tes.html`: 40 uji (FSRS, kode progres, gabung, snapshot, nada, kelelahan, karantina, 23 halaman). Penyimpanan dikunci selama uji. `git` belum |
 | Target ingatan FSRS (bagian dari 23) | **Selesai** — pilihan 85% / 90% / 93% di menu Saya. Bobot pribadi belum |
 | 9 · Lima tujuan navigasi | **Sudah ada di V1.6** — menu "Lainnya" sudah dikelompokkan: Belajar, Latihan, Kampus & kerja, Main, Saya |
-| 7, 10, 12 (penuh), 14 (loop bersama), 15, 22, 24, 25 | **Belum** — Vite/ESM butuh Node; duel butuh dua perangkat; paket audio butuh rekaman |
+| Node + git (13 Nov 2026) | **Terpasang** — repo git aktif; `npm run build / cek / rilis / uji`. `rilis` mengganti penanda `k170` dengan hash isi file, jadi versi cache naik sendiri. `uji` menjalankan 40 uji di Edge tanpa jendela |
+| Vite | **Tidak dipakai, sengaja** — Vite tidak mengolah skrip klasik non-modul, jadi belum memberi apa-apa sampai kode jadi modul ES. Manfaat yang dijanjikan (hash otomatis, cek sintaks) sudah didapat lewat `build.mjs` tanpa dependensi |
+| 7, 10, 12 (penuh), 14 (loop bersama), 15, 22, 24, 25 | **Belum** — konversi ke modul ES adalah pekerjaan bertahap per rute; duel butuh dua perangkat; paket audio butuh rekaman |
 
 **Koreksi atas bagian 2.** Setelah app dijalankan, ternyata tampilan aktifnya sudah memakai sistem token yang lebih baru (aksen mawar `--acc: #d93a74`, `--surface`, `--line`, skala `--s1…--s6`) dan efek kaca sudah dimatikan oleh aturan di bagian akhir `app.css`. Palet plum/lavender di 2.1–2.2 saya ambil dari awal `app.css` yang sudah tertimpa, jadi **abaikan nilai warna di sana**; arah desainnya (garis nada sebagai identitas, tiga tema, anggaran efek) tetap berlaku dan tema Malam dibangun di atas token mawar yang asli.
 

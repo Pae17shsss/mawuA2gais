@@ -522,7 +522,7 @@
   const renderBase = render;
   render = function () {
     const next = location.hash.slice(1) || 'home';
-    if (PK.booted && document.startViewTransition && !reduce.matches && !SES && next !== ROUTE && !document.hidden && !document.querySelector('.overlay,#session')) {
+    if (PK.booted && !PK.noVT && document.startViewTransition && !reduce.matches && !SES && next !== ROUTE && !document.hidden && !document.querySelector('.overlay,#session')) {
       try {
         const order = ROUTES.map(r => r[0]); const a = order.indexOf(ROUTE), b = order.indexOf(next);
         document.documentElement.dataset.nav = b >= 0 && a >= 0 && b < a ? 'back' : 'fwd';

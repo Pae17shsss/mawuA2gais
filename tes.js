@@ -110,9 +110,12 @@
   });
 
   /* ---------- semua halaman ---------- */
+  // Dari baris perintah (uji.mjs → ?cli=1) browser tanpa jendela tidak menggambar frame,
+  // jadi transisi antar halaman tidak pernah selesai di sana: dimatikan khusus untuk jalur itu.
+  if (/[?&]cli=1/.test(location.search)) PK.noVT = true;
   for (const r of ROUTES.map(x => x[0])) {
     await T('halaman terbuka: ' + r, async () => {
-      go(r); await sl(380);
+      go(r); for (let k = 0; k < 25 && ROUTE !== r; k++) await sl(100); await sl(280);
       const m = document.querySelector('#main'); eq(ROUTE, r, 'rute'); ya(m && m.innerText.length > 40, 'halaman kosong'); ya(!m.innerText.includes('Halaman gagal dimuat'), 'halaman gagal dimuat');
     });
   }

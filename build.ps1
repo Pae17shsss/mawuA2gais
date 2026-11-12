@@ -11,6 +11,15 @@ param([switch]$Rilis, [switch]$Cek)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $enc = New-Object System.Text.UTF8Encoding $false
+
+# Kalau Node terpasang, pakai build.mjs (cek sintaks + versi cache otomatis). Tanpa Node, lanjut ke cara lama di bawah.
+$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
+if (Get-Command node -ErrorAction SilentlyContinue) {
+  $m = if ($Cek) { 'cek' } elseif ($Rilis) { 'rilis' } else { 'build' }
+  & node (Join-Path $root 'build.mjs') $m
+  exit $LASTEXITCODE
+}
+
 $parts = Get-ChildItem (Join-Path $root 'src\app') -Filter '*.js' | Sort-Object Name
 if (-not $parts) { throw 'src\app kosong' }
 
