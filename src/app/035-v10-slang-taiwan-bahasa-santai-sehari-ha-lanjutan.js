@@ -1,0 +1,1 @@
+SLANG.forEach(s => { const x = SLANG_TV[s.k]; if (!x) return; Object.assign(s.p, x.p); Object.assign(s.n, x.n); Object.assign(s.ex[2], x.ex); });

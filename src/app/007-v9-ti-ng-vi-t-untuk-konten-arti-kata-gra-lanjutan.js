@@ -1,0 +1,1 @@
+Object.assign(VIX, { 'Tier 1 · sentence frame': 'Cấp 1 · khung câu', 'Tier 2 · order & time': 'Cấp 2 · trật tự & thời gian', 'Tier 3 · complex sentences': 'Cấp 3 · câu phức' });

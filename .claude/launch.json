@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "xiaobu",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:\\Users\\gazef\\AppData\\Local\\Temp\\claude\\f6bb18cefc22d437\\6dc31c5a-387d-4aff-a1ac-8871c726072a\\scratchpad\\serve.ps1"],
+      "port": 8765
+    }
+  ]
+}

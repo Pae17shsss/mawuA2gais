@@ -1,0 +1,6 @@
+# hasil build dan dependensi
+rilis/
+node_modules/
+dist/
+# profil browser sementara untuk uji otomatis
+.uji-profil/

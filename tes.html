@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uji otomatis — Xiǎobù Kelas</title>
+<link rel="stylesheet" href="app.css?uji=1">
+<link rel="stylesheet" href="peak.css?uji=1">
+<style>
+  #tes{position:fixed;inset:0;z-index:9999;overflow:auto;background:#fff;color:#222;font:14px/1.5 system-ui,sans-serif;padding:20px}
+  #tes h1{font-size:20px;margin:0 0 4px}
+  #tes .sum{font-weight:700;margin:8px 0 14px}
+  #tes li{margin:2px 0;list-style:none}
+  #tes .ok::before{content:"✓ ";color:#1b8560;font-weight:700}
+  #tes .no::before{content:"✗ ";color:#c73b55;font-weight:700}
+  #tes .no{color:#c73b55}
+  #tes small{color:#777}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<div id="tes"><h1>Uji otomatis</h1><p><small>Halaman ini memuat app tanpa menyimpan apa pun (penyimpanan dikunci selama uji). Tidak ikut diunggah ke Netlify.</small></p><p class="sum" id="tes-sum">Menjalankan…</p><ul id="tes-list" style="padding:0"></ul></div>
+<script>
+  /* ?uji=… membuat service worker melewatkan file ini, jadi yang diuji selalu file terbaru di disk */
+  window.XB_DEFER_BOOT = 1;
+  var q = '?uji=' + Date.now();
+  document.write('<script src="data.js' + q + '"><\/script><script src="sd.js' + q + '"><\/script><script src="app.js' + q + '"><\/script>');
+</script>
+<script>SAVE_LOCK = true;   /* uji tidak boleh menulis ke progres pengguna */</script>
+<script>document.write('<script src="peak.js' + q + '"><\/script><script src="tes.js' + q + '"><\/script>');</script>
+</body>
+</html>
