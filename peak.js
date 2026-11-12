@@ -53,6 +53,15 @@
     'Progresmu masih tersimpan': ['Your progress is still saved', 'Naka-save pa ang progress mo'],
     'Cadangan otomatis di perangkat ini berisi {n} kata dan {x} XP.': ['The automatic backup on this device has {n} words and {x} XP.', 'May {n} salita at {x} XP ang awtomatikong backup sa device na ito.'],
     'Mulai baru': ['Start fresh', 'Magsimula ulit'],
+    'Pasang di HP lewat QR': ['Install on a phone by QR', 'I-install sa phone gamit ang QR'],
+    'Tampilkan kode QR alamat app ini untuk dipindai HP-mu atau HP teman sekelas.': ['Show a QR code of this app’s address for your phone or a classmate’s phone to scan.', 'Ipakita ang QR code ng address ng app para i-scan ng phone mo o ng kaklase.'],
+    'Tampilkan QR': ['Show QR', 'Ipakita ang QR'],
+    'Alamat ini hanya berlaku di komputer ini. Unggah app ke Netlify dulu, lalu buka halaman ini dari alamat Netlify-nya.': ['This address only works on this computer. Upload the app to Netlify first, then open this page from its Netlify address.', 'Sa computer na ito lang gumagana ang address na ito. I-upload muna ang app sa Netlify, tapos buksan ito mula sa Netlify address.'],
+    'Buka kamera HP, arahkan ke kode ini, lalu ketuk tautan yang muncul.': ['Open the phone camera, point it at this code, then tap the link that appears.', 'Buksan ang camera ng phone, itutok sa code, tapos i-tap ang lalabas na link.'],
+    'Android (Chrome): menu ⋮ → Instal aplikasi.': ['Android (Chrome): menu ⋮ → Install app.', 'Android (Chrome): menu ⋮ → I-install ang app.'],
+    'iPhone (Safari): tombol Bagikan → Tambah ke Layar Utama.': ['iPhone (Safari): Share button → Add to Home Screen.', 'iPhone (Safari): Share → Add to Home Screen.'],
+    'Simpan gambar QR': ['Save QR image', 'I-save ang QR image'], 'Bagikan tautan': ['Share link', 'I-share ang link'], 'Tautan disalin': ['Link copied', 'Nakopya ang link'],
+    'Pindai dengan kamera HP untuk memasang': ['Scan with your phone camera to install', 'I-scan gamit ang camera ng phone para i-install'],
     'Pindah HP': ['Move to another phone', 'Lumipat ng phone'],
     'Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.': ['Move your progress with the camera — no internet, no typing.', 'Ilipat ang progress gamit ang camera — walang internet, walang pagta-type.'],
     'Kirim lewat QR': ['Send by QR', 'Ipadala gamit ang QR'], 'Terima lewat QR': ['Receive by QR', 'Tanggapin gamit ang QR'],
@@ -95,6 +104,11 @@
     'Ganti dengan cadangan': 'Thay bằng bản sao lưu', 'Progres di perangkat ini diganti. Salinannya tetap ada di snapshot.': 'Tiến độ trên thiết bị này sẽ bị thay. Bản sao vẫn còn trong các bản lưu.',
     'Progresmu masih tersimpan': 'Tiến độ của bạn vẫn còn', 'Cadangan otomatis di perangkat ini berisi {n} kata dan {x} XP.': 'Bản sao lưu tự động trên thiết bị này có {n} từ và {x} XP.',
     'Mulai baru': 'Bắt đầu mới', 'Langit harian': 'Bầu trời mỗi ngày',
+    'Pasang di HP lewat QR': 'Cài lên điện thoại bằng QR', 'Tampilkan kode QR alamat app ini untuk dipindai HP-mu atau HP teman sekelas.': 'Hiện mã QR địa chỉ ứng dụng để điện thoại của bạn hoặc bạn cùng lớp quét.',
+    'Tampilkan QR': 'Hiện QR', 'Alamat ini hanya berlaku di komputer ini. Unggah app ke Netlify dulu, lalu buka halaman ini dari alamat Netlify-nya.': 'Địa chỉ này chỉ dùng được trên máy tính này. Hãy tải ứng dụng lên Netlify trước, rồi mở trang này từ địa chỉ Netlify.',
+    'Buka kamera HP, arahkan ke kode ini, lalu ketuk tautan yang muncul.': 'Mở camera điện thoại, hướng vào mã này rồi chạm vào liên kết hiện ra.',
+    'Android (Chrome): menu ⋮ → Instal aplikasi.': 'Android (Chrome): menu ⋮ → Cài đặt ứng dụng.', 'iPhone (Safari): tombol Bagikan → Tambah ke Layar Utama.': 'iPhone (Safari): nút Chia sẻ → Thêm vào Màn hình chính.',
+    'Simpan gambar QR': 'Lưu ảnh QR', 'Bagikan tautan': 'Chia sẻ liên kết', 'Tautan disalin': 'Đã sao chép liên kết', 'Pindai dengan kamera HP untuk memasang': 'Quét bằng camera điện thoại để cài',
     'Pindah HP': 'Chuyển sang máy khác', 'Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.': 'Chuyển tiến độ bằng camera — không cần mạng, không cần gõ.',
     'Kirim lewat QR': 'Gửi bằng QR', 'Terima lewat QR': 'Nhận bằng QR', 'Kirim progres ke HP lain': 'Gửi tiến độ sang máy khác',
     'Di HP baru: buka Xiǎobù → Terima lewat QR, lalu arahkan kameranya ke kode ini sampai selesai.': 'Trên máy mới: mở Xiǎobù → Nhận bằng QR, rồi hướng camera vào mã này cho đến khi xong.',
@@ -321,6 +335,7 @@
       <div class="set"><div class="l"><b>${t('Terpakai')}</b><span id="pk-use">…</span></div></div>
       <div class="set"><div class="l"><b>${t('Cadangan terakhir')}</b><span>${lb < 0 ? t('belum pernah') : lb === 0 ? t('hari ini') : t('{n} hari lalu', { n: lb })}</span></div></div>
       <div class="set"><div class="l"><b>${t('Riwayat jawaban tersimpan')}</b><span id="pk-rev">…</span></div></div>
+      <div class="set"><div class="l"><b>${t('Pasang di HP lewat QR')}</b><span>${t('Tampilkan kode QR alamat app ini untuk dipindai HP-mu atau HP teman sekelas.')}</span></div><button class="btn sec small" data-pk="qrapp">${ICON('grid')} ${t('Tampilkan QR')}</button></div>
       <div class="set"><div class="l"><b>${t('Pindah HP')}</b><span>${t('Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.')}</span></div></div>
       <div class="row wrap" style="margin:0 0 6px"><button class="btn sec" data-pk="qrsend">${ICON('grid')} ${t('Kirim lewat QR')}</button><button class="btn sec" data-pk="qrrecv">${ICON('grid')} ${t('Terima lewat QR')}</button></div>
       <div class="set"><div class="l"><b>${t('Sesi menyesuaikan diri')}</b><span>${t('Saat kamu mulai berat, Sesi pintar menunda kata baru dan memendekkan diri.')}</span></div>${pkSeg('pace', S.settings.pace === 'off' ? 'off' : 'on')}</div>
@@ -356,6 +371,9 @@
     else if (a === 'rmerge' && PK.pending) { const base = JSON.parse(JSON.stringify(S)); const d = PK.pending; PK.pending = null; closeModal(); pkWrite(mergeStates(base, d)); }
     else if (a === 'rreplace' && PK.pending) { const d = PK.pending; PK.pending = null; closeModal(); pkWrite(d); }
     else if (a === 'mrestore') { sfSnapGet(v).then(r => { const d = JSON.parse(r.d); if (d && d.cards && d.settings) pkWrite(d); }).catch(() => toast(t('⚠️ File cadangan tidak valid'))); }
+    else if (a === 'qrapp') qrApp();
+    else if (a === 'qrpng') qrPng();
+    else if (a === 'qrlink') qrLink();
     else if (a === 'qrsend') qrSend();
     else if (a === 'qrrecv') qrRecv();
     else if (a === 'sky') { S.settings.sky = v; save(); pkSky(true); const c = document.getElementById('pk-store'); if (c) c.remove(); pkMeCard(); }
@@ -635,8 +653,8 @@
       document.head.appendChild(s);
     }));
   }
-  function qrDraw(cv, text) {
-    const q = window.qrcode(0, 'L'); q.addData(text, 'Alphanumeric'); q.make();
+  function qrDraw(cv, text, mode, ec) {
+    const q = window.qrcode(0, ec || 'L'); q.addData(text, mode || 'Alphanumeric'); q.make();
     const m = q.getModuleCount(), quiet = 4, cell = Math.max(2, Math.floor(cv.width / (m + quiet * 2))), off = Math.floor((cv.width - cell * m) / 2);
     const g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, cv.width, cv.height); g.fillStyle = '#000';
     for (let r = 0; r < m; r++) for (let c = 0; c < m; c++) if (q.isDark(r, c)) g.fillRect(off + c * cell, off + r * cell, cell, cell);
@@ -700,6 +718,38 @@
     };
     requestAnimationFrame(scan);
   }
+  /* QR alamat app: pindai dengan kamera HP → app terbuka di browser → pasang ke layar utama.
+     Hanya berguna bila app dibuka dari alamat publik (mis. Netlify); alamat localhost tidak bisa dibuka HP lain. */
+  const appUrl = () => location.origin + location.pathname.replace(/index\.html$/, '');
+  const isLocalUrl = () => !/^https?:$/.test(location.protocol) || /^(localhost|127\.|\[::1\]|192\.168\.|10\.)/.test(location.hostname);
+  PK.appUrl = appUrl;
+  async function qrApp() {
+    try { await qrLib(); } catch (e) { toast(t('Fitur QR belum bisa dimuat — cek koneksi, lalu coba lagi.'), 3600); return; }
+    const url = appUrl(); const lokal = isLocalUrl();
+    openModal(`<h2>${t('Pasang di HP lewat QR')}</h2>
+      ${lokal ? `<div class="notice" style="margin:0 0 10px">${t('Alamat ini hanya berlaku di komputer ini. Unggah app ke Netlify dulu, lalu buka halaman ini dari alamat Netlify-nya.')}</div>` : ''}
+      <canvas id="pk-qr" class="pk-qr pk-qrapp" width="720" height="720" aria-label="QR"></canvas>
+      <p class="small" style="text-align:center;margin:8px 0 2px;word-break:break-all"><b>${esc(url)}</b></p>
+      <ol class="small muted pk-steps"><li>${t('Buka kamera HP, arahkan ke kode ini, lalu ketuk tautan yang muncul.')}</li><li>${t('Android (Chrome): menu ⋮ → Instal aplikasi.')}</li><li>${t('iPhone (Safari): tombol Bagikan → Tambah ke Layar Utama.')}</li></ol>
+      <div class="row wrap" style="justify-content:center"><button class="btn sec" data-pk="qrpng">${ICON('download')} ${t('Simpan gambar QR')}</button><button class="btn sec" data-pk="qrlink">${ICON('upload')} ${t('Bagikan tautan')}</button></div>`, 'pk-qrsheet');
+    try { qrDraw(document.getElementById('pk-qr'), url, 'Byte', 'M'); } catch (e) {}
+  }
+  function qrPng() {
+    const cv = document.getElementById('pk-qr'); if (!cv) return;
+    // versi cetak: kode + nama app + alamat, supaya bisa ditempel di kelas atau dikirim ke grup
+    const out = document.createElement('canvas'); out.width = 900; out.height = 1080; const g = out.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, 900, 1080); g.imageSmoothingEnabled = false; g.drawImage(cv, 90, 150, 720, 720);
+    g.fillStyle = '#33222d'; g.textAlign = 'center'; g.font = '800 54px "Plus Jakarta Sans", system-ui, sans-serif'; g.fillText('Xiǎobù Kelas', 450, 100);
+    g.font = '600 30px "Plus Jakarta Sans", system-ui, sans-serif'; g.fillText(t('Pindai dengan kamera HP untuk memasang'), 450, 935);
+    g.fillStyle = '#6f5866'; g.font = '500 26px "Plus Jakarta Sans", system-ui, sans-serif'; const u = appUrl().replace(/^https?:\/\//, ''); g.fillText(u.length > 52 ? u.slice(0, 51) + '…' : u, 450, 990);
+    out.toBlob(b => { if (!b) return; const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'xiaobu-kelas-qr.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }, 'image/png');
+  }
+  async function qrLink() {
+    const url = appUrl();
+    try { if (navigator.share) { await navigator.share({ title: 'Xiǎobù Kelas', url }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    try { await navigator.clipboard.writeText(url); toast(t('Tautan disalin'), 2000); } catch (e) { toast(url, 5000); }
+  }
+
   /* tombol "Terima lewat QR" di layar perkenalan (HP baru biasanya mulai dari sini) */
   function pkOnbQr() {
     const b = document.querySelector('#onb [data-a="onbpaste"]'); if (!b || document.querySelector('#onb [data-pk="qrrecv"]')) return;

@@ -101,6 +101,9 @@
 
 /* ---------- Pindah HP lewat QR ---------- */
 .pk-qr{display:block;width:min(100%,440px);height:auto;aspect-ratio:1;margin:0 auto;border-radius:14px;background:#fff;image-rendering:pixelated}
+.pk-qrapp{width:min(100%,300px)}
+.pk-steps{margin:8px auto 12px;padding-left:20px;max-width:420px}
+.pk-steps li{margin:3px 0}
 .pk-cam{position:relative;width:min(100%,440px);aspect-ratio:1;margin:0 auto;border-radius:18px;overflow:hidden;background:#000}
 .pk-cam video{width:100%;height:100%;object-fit:cover;display:block}
 .pk-cam::after{content:"";position:absolute;inset:12%;border:3px solid rgba(255,255,255,.85);border-radius:16px;pointer-events:none}

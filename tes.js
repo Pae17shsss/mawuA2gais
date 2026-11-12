@@ -72,6 +72,12 @@
     ya(modul <= 81, 'kode terlalu rapat: ' + modul + ' modul'); if (fr.length <= 6) { ya(r.done, 'tidak selesai'); eq(JSON.stringify(await PK.qr.unpack(r.bytes)), JSON.stringify(S)); }
   });
 
+  await T('QR pasang: kode alamat app terbaca kembali sebagai alamat yang sama', async () => {
+    await PK.qr.lib(); const url = 'https://xiaobu-kelas.netlify.app/'; const cv = document.createElement('canvas'); cv.width = cv.height = 720;
+    PK.qr.draw(cv, url, 'Byte', 'M'); const im = cv.getContext('2d').getImageData(0, 0, 720, 720); const d = window.jsQR(im.data, 720, 720);
+    ya(d, 'kode tidak terbaca'); eq(d.data, url); ya(/^https?:\/\//.test(PK.appUrl()) && !/index\.html$/.test(PK.appUrl()), 'alamat app: ' + PK.appUrl());
+  });
+
   /* ---------- gabung ---------- */
   await T('gabung: ulangan terbaru menang, tidak ada kartu hilang', () => {
     const a = { cards: { 1: { lr: 100, r: 1, x: 'a' }, 2: { lr: 300, r: 2, x: 'a' } }, days: { d1: { ok: 5, xp: 10 } }, xp: 50, streak: { cur: 2, best: 4, last: '2026-11-01' }, settings: { rate: 1 }, stories: { 我: 'punyaku' } };
