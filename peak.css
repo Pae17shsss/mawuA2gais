@@ -26,6 +26,8 @@
   color-scheme:dark;
 }
 :root[data-theme="dark"][data-night] body{background:var(--bg)}
+/* lencana jumlah: di tema gelap latarnya persik terang, jadi angkanya harus gelap (putih hanya kontras 2:1) */
+:root[data-theme="dark"] .fbadge{color:#2a1410}
 
 /* ---------- Ketukan: respons saat jari menyentuh, kembali dengan pegas ---------- */
 .opt,.tab,.chip,.btn,.seg button,.nav,.unit,.kl-lc{touch-action:manipulation}
