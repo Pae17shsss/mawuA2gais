@@ -16,9 +16,9 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const mode = process.argv[2] || 'build';
 const MARK = 'k170';
-const DEPLOY = ['index.html', 'app.js', 'app.css', 'peak.js', 'peak.css', 'data.js', 'sd.js', 'ctx.js', 'tocfl.js', 'hw.js', 'mdict.js', 'sw.js',
+const DEPLOY = ['index.html', 'app.js', 'app.css', 'peak.js', 'peak.css', 'qr.js', 'data.js', 'sd.js', 'ctx.js', 'tocfl.js', 'hw.js', 'mdict.js', 'sw.js',
   'manifest.webmanifest', 'netlify.toml', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'LICENSES-kamus.txt'];
-const TEXT_STAMP = ['index.html', 'sw.js', 'app.js'];          // file yang memuat penanda versi
+const TEXT_STAMP = ['index.html', 'sw.js', 'app.js', 'peak.js'];          // file yang memuat penanda versi
 
 function assemble() {
   const dir = path.join(root, 'src', 'app');

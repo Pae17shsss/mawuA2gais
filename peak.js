@@ -53,6 +53,20 @@
     'Progresmu masih tersimpan': ['Your progress is still saved', 'Naka-save pa ang progress mo'],
     'Cadangan otomatis di perangkat ini berisi {n} kata dan {x} XP.': ['The automatic backup on this device has {n} words and {x} XP.', 'May {n} salita at {x} XP ang awtomatikong backup sa device na ito.'],
     'Mulai baru': ['Start fresh', 'Magsimula ulit'],
+    'Pindah HP': ['Move to another phone', 'Lumipat ng phone'],
+    'Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.': ['Move your progress with the camera — no internet, no typing.', 'Ilipat ang progress gamit ang camera — walang internet, walang pagta-type.'],
+    'Kirim lewat QR': ['Send by QR', 'Ipadala gamit ang QR'], 'Terima lewat QR': ['Receive by QR', 'Tanggapin gamit ang QR'],
+    'Kirim progres ke HP lain': ['Send progress to another phone', 'Ipadala ang progress sa ibang phone'],
+    'Di HP baru: buka Xiǎobù → Terima lewat QR, lalu arahkan kameranya ke kode ini sampai selesai.': ['On the new phone: open Xiǎobù → Receive by QR, then point its camera at this code until it finishes.', 'Sa bagong phone: buksan ang Xiǎobù → Tanggapin gamit ang QR, tapos itutok ang camera sa code na ito hanggang matapos.'],
+    'satu putaran ±{s} detik': ['one round ≈ {s} seconds', 'isang ikot ≈ {s} segundo'],
+    'Naikkan kecerahan layar. Progres tidak dikirim ke internet.': ['Turn up the screen brightness. Your progress is not sent to the internet.', 'Lakasan ang liwanag ng screen. Hindi ipinapadala sa internet ang progress.'],
+    'Terima progres lewat QR': ['Receive progress by QR', 'Tanggapin ang progress gamit ang QR'],
+    'Di HP lama: buka Saya → Kirim lewat QR. Arahkan kamera ini ke kodenya dan tahan sampai penuh.': ['On the old phone: open Me → Send by QR. Point this camera at the code and hold until the bar is full.', 'Sa lumang phone: buksan ang Ako → Ipadala gamit ang QR. Itutok ang camera sa code hanggang mapuno.'],
+    'Menyalakan kamera…': ['Starting the camera…', 'Binubuksan ang camera…'],
+    'Kamera tidak bisa dipakai. Izinkan akses kamera, atau pakai Tempel kode progres.': ['The camera cannot be used. Allow camera access, or use Paste progress code.', 'Hindi magamit ang camera. Payagan ang camera, o gamitin ang I-paste ang progress code.'],
+    'Arahkan ke kode QR di HP lama': ['Point at the QR code on the old phone', 'Itutok sa QR code ng lumang phone'],
+    '{a} dari {b} bagian': ['{a} of {b} parts', '{a} sa {b} bahagi'],
+    'Fitur QR belum bisa dimuat — cek koneksi, lalu coba lagi.': ['The QR feature could not load — check your connection and try again.', 'Hindi ma-load ang QR — tingnan ang koneksyon at subukan ulit.'],
     'Target ingatan': ['Memory target', 'Target ng memorya'],
     'Seberapa kuat kata dijaga sebelum diulang. Makin tinggi, makin sering mengulang.': ['How firmly words are kept before a review. Higher means more frequent reviews.', 'Gaano katibay iniingatan ang salita bago ulitin. Mas mataas, mas madalas ang pag-uulit.'],
     'Santai': ['Relaxed', 'Relaks'], 'Seimbang': ['Balanced', 'Balanse'], 'Kuat': ['Strong', 'Matibay'],
@@ -81,6 +95,14 @@
     'Ganti dengan cadangan': 'Thay bằng bản sao lưu', 'Progres di perangkat ini diganti. Salinannya tetap ada di snapshot.': 'Tiến độ trên thiết bị này sẽ bị thay. Bản sao vẫn còn trong các bản lưu.',
     'Progresmu masih tersimpan': 'Tiến độ của bạn vẫn còn', 'Cadangan otomatis di perangkat ini berisi {n} kata dan {x} XP.': 'Bản sao lưu tự động trên thiết bị này có {n} từ và {x} XP.',
     'Mulai baru': 'Bắt đầu mới', 'Langit harian': 'Bầu trời mỗi ngày',
+    'Pindah HP': 'Chuyển sang máy khác', 'Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.': 'Chuyển tiến độ bằng camera — không cần mạng, không cần gõ.',
+    'Kirim lewat QR': 'Gửi bằng QR', 'Terima lewat QR': 'Nhận bằng QR', 'Kirim progres ke HP lain': 'Gửi tiến độ sang máy khác',
+    'Di HP baru: buka Xiǎobù → Terima lewat QR, lalu arahkan kameranya ke kode ini sampai selesai.': 'Trên máy mới: mở Xiǎobù → Nhận bằng QR, rồi hướng camera vào mã này cho đến khi xong.',
+    'satu putaran ±{s} detik': 'một vòng ≈ {s} giây', 'Naikkan kecerahan layar. Progres tidak dikirim ke internet.': 'Hãy tăng độ sáng màn hình. Tiến độ không được gửi lên mạng.',
+    'Terima progres lewat QR': 'Nhận tiến độ bằng QR', 'Di HP lama: buka Saya → Kirim lewat QR. Arahkan kamera ini ke kodenya dan tahan sampai penuh.': 'Trên máy cũ: mở Tôi → Gửi bằng QR. Hướng camera này vào mã và giữ đến khi đầy.',
+    'Menyalakan kamera…': 'Đang bật camera…', 'Kamera tidak bisa dipakai. Izinkan akses kamera, atau pakai Tempel kode progres.': 'Không dùng được camera. Hãy cho phép camera, hoặc dùng Dán mã tiến độ.',
+    'Arahkan ke kode QR di HP lama': 'Hướng vào mã QR trên máy cũ', '{a} dari {b} bagian': '{a} trên {b} phần',
+    'Fitur QR belum bisa dimuat — cek koneksi, lalu coba lagi.': 'Chưa tải được tính năng QR — kiểm tra kết nối rồi thử lại.',
     'Target ingatan': 'Mục tiêu ghi nhớ', 'Seberapa kuat kata dijaga sebelum diulang. Makin tinggi, makin sering mengulang.': 'Mức giữ từ trước khi ôn lại. Càng cao thì ôn càng thường xuyên.',
     'Santai': 'Thư thả', 'Seimbang': 'Cân bằng', 'Kuat': 'Chắc',
     'Latar bergaris nada yang berganti tiap hari. Digambar sekali, tidak memberatkan HP.': 'Nền với các đường thanh điệu, đổi mỗi ngày. Chỉ vẽ một lần nên không làm chậm máy.'
@@ -299,6 +321,8 @@
       <div class="set"><div class="l"><b>${t('Terpakai')}</b><span id="pk-use">…</span></div></div>
       <div class="set"><div class="l"><b>${t('Cadangan terakhir')}</b><span>${lb < 0 ? t('belum pernah') : lb === 0 ? t('hari ini') : t('{n} hari lalu', { n: lb })}</span></div></div>
       <div class="set"><div class="l"><b>${t('Riwayat jawaban tersimpan')}</b><span id="pk-rev">…</span></div></div>
+      <div class="set"><div class="l"><b>${t('Pindah HP')}</b><span>${t('Pindahkan progres lewat kamera, tanpa internet dan tanpa mengetik.')}</span></div></div>
+      <div class="row wrap" style="margin:0 0 6px"><button class="btn sec" data-pk="qrsend">${ICON('grid')} ${t('Kirim lewat QR')}</button><button class="btn sec" data-pk="qrrecv">${ICON('grid')} ${t('Terima lewat QR')}</button></div>
       <div class="set"><div class="l"><b>${t('Sesi menyesuaikan diri')}</b><span>${t('Saat kamu mulai berat, Sesi pintar menunda kata baru dan memendekkan diri.')}</span></div>${pkSeg('pace', S.settings.pace === 'off' ? 'off' : 'on')}</div>
       <div class="set"><div class="l"><b>${t('Target ingatan')}</b><span>${t('Seberapa kuat kata dijaga sebelum diulang. Makin tinggi, makin sering mengulang.')}</span></div><div class="seg">${[['0.85', t('Santai') + ' 85%'], ['0.9', t('Seimbang') + ' 90%'], ['0.93', t('Kuat') + ' 93%']].map(([v, l]) => `<button class="${String(+S.settings.retain || 0.9) === v ? 'on' : ''}" data-a="set" data-k="retain" data-v="${v}">${l}</button>`).join('')}</div></div>
       <div class="set"><div class="l"><b>${t('Langit harian')}</b><span>${t('Latar bergaris nada yang berganti tiap hari. Digambar sekali, tidak memberatkan HP.')}</span></div><div class="seg">${[['on', t('Nyala')], ['off', t('Mati')]].map(([v, l]) => `<button class="${(S.settings.sky === 'off' ? 'off' : 'on') === v ? 'on' : ''}" data-pk="sky" data-v="${v}">${l}</button>`).join('')}</div></div>
@@ -332,6 +356,8 @@
     else if (a === 'rmerge' && PK.pending) { const base = JSON.parse(JSON.stringify(S)); const d = PK.pending; PK.pending = null; closeModal(); pkWrite(mergeStates(base, d)); }
     else if (a === 'rreplace' && PK.pending) { const d = PK.pending; PK.pending = null; closeModal(); pkWrite(d); }
     else if (a === 'mrestore') { sfSnapGet(v).then(r => { const d = JSON.parse(r.d); if (d && d.cards && d.settings) pkWrite(d); }).catch(() => toast(t('⚠️ File cadangan tidak valid'))); }
+    else if (a === 'qrsend') qrSend();
+    else if (a === 'qrrecv') qrRecv();
     else if (a === 'sky') { S.settings.sky = v; save(); pkSky(true); const c = document.getElementById('pk-store'); if (c) c.remove(); pkMeCard(); }
     else if (a === 'qclose') { const n = b.closest('.pk-q'); if (n) { if (n.id === 'pk-m') { S.pkNoOffer = 1; save(); } n.remove(); } }
     else if (a === 'qgo') { const n = document.getElementById('pk-q'); if (n) n.remove(); go('me'); }
@@ -543,6 +569,144 @@
     if (night) { r.setAttribute('data-theme', 'dark'); r.dataset.night = '1'; const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = '#0f0b10'; }
     else delete r.dataset.night;
   };
+
+  /* ---------- pindah HP lewat QR ----------
+     HP lama menampilkan kode QR yang berganti-ganti; HP baru memindainya lewat kamera. Tanpa internet,
+     tanpa server: progres berpindah lewat cahaya layar saja.
+     Muatan  = [1 byte: 1 = gzip, 0 = polos] + JSON progres
+     Bingkai = "XQ1:<id 4>:<nomor>:<jumlah>:<CRC32 muatan>:<potongan base45>:" (mode alfanumerik QR, ±97% efisien)
+     Bingkai boleh tiba acak dan berulang; HP baru menunggu sampai semua nomor terkumpul lalu memeriksa CRC. */
+  const B45 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
+  function b45enc(u8) {
+    let s = '';
+    for (let i = 0; i < u8.length; i += 2) {
+      if (i + 1 < u8.length) { let x = u8[i] * 256 + u8[i + 1]; s += B45[x % 45]; x = (x / 45) | 0; s += B45[x % 45] + B45[(x / 45) | 0]; }
+      else { const x = u8[i]; s += B45[x % 45] + B45[(x / 45) | 0]; }
+    }
+    return s;
+  }
+  function b45dec(s) {
+    const out = new Uint8Array(Math.floor(s.length / 3) * 2 + (s.length % 3 ? 1 : 0)); let o = 0;
+    for (let i = 0; i < s.length; i += 3) {
+      const a = B45.indexOf(s[i]), b = B45.indexOf(s[i + 1]);
+      if (i + 2 < s.length) { const c = B45.indexOf(s[i + 2]); const x = a + b * 45 + c * 2025; if (a < 0 || b < 0 || c < 0 || x > 65535) throw new Error('b45'); out[o++] = x >> 8; out[o++] = x & 255; }
+      else { if (a < 0 || b < 0 || a + b * 45 > 255) throw new Error('b45'); out[o++] = a + b * 45; }
+    }
+    return out;
+  }
+  const QR_CHUNK = 630;                      // karakter base45 per bingkai → QR versi 15 (77×77), masih mudah dipindai dari layar HP
+  async function qrPayload(state) {
+    const raw = new TextEncoder().encode(JSON.stringify(state || S));
+    if (typeof CompressionStream === 'function') {
+      try { const z = new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer()); const out = new Uint8Array(z.length + 1); out[0] = 1; out.set(z, 1); return out; } catch (e) {}
+    }
+    const out = new Uint8Array(raw.length + 1); out[0] = 0; out.set(raw, 1); return out;
+  }
+  async function qrUnpack(bytes) {
+    const body = bytes.subarray(1);
+    if (bytes[0] === 1) return JSON.parse(await new Response(new Blob([body]).stream().pipeThrough(new DecompressionStream('gzip'))).text());
+    return JSON.parse(new TextDecoder().decode(body));
+  }
+  function qrFrames(bytes) {
+    const s = b45enc(bytes); const n = Math.max(1, Math.ceil(s.length / QR_CHUNK)); const crc = crcHex(bytes).toUpperCase();
+    let id = ''; for (let i = 0; i < 4; i++) id += B45[Math.floor(Math.random() * 36)];
+    const out = []; for (let k = 0; k < n; k++) out.push(`XQ1:${id}:${k + 1}:${n}:${crc}:${s.slice(k * QR_CHUNK, (k + 1) * QR_CHUNK)}:`);
+    return out;
+  }
+  /* terima satu teks hasil pindai; mengembalikan status. st = {id, n, crc, parts:{}} (diisi di tempat) */
+  function qrFeed(st, text) {
+    const m = /^XQ1:([0-9A-Z]{4}):(\d{1,4}):(\d{1,4}):([0-9A-F]{8}):([\s\S]*):$/.exec(String(text || ''));
+    if (!m) return { ok: false, have: Object.keys(st.parts || {}).length, total: st.n || 0 };
+    const k = +m[2], n = +m[3];
+    if (st.id !== m[1] || st.n !== n || st.crc !== m[4]) { st.id = m[1]; st.n = n; st.crc = m[4]; st.parts = {}; }   // sesi baru
+    if (k >= 1 && k <= n && st.parts[k] === undefined) st.parts[k] = m[5];
+    const have = Object.keys(st.parts).length;
+    if (have < n) return { ok: true, have, total: n };
+    let bytes; try { let s = ''; for (let i = 1; i <= n; i++) s += st.parts[i]; bytes = b45dec(s); } catch (e) { st.parts = {}; return { ok: false, have: 0, total: n, rusak: true }; }
+    if (crcHex(bytes).toUpperCase() !== st.crc) { st.parts = {}; return { ok: false, have: 0, total: n, rusak: true }; }
+    return { ok: true, have, total: n, done: true, bytes };
+  }
+  let qrLibP = null;
+  function qrLib() {
+    if (window.qrcode && window.jsQR) return Promise.resolve();
+    return qrLibP || (qrLibP = new Promise((res, rej) => {
+      const s = document.createElement('script'); s.src = 'qr.js?v=k170'; s.async = true;
+      s.onload = () => (window.qrcode && window.jsQR ? res() : rej(new Error('qr'))); s.onerror = () => { qrLibP = null; s.remove(); rej(new Error('qr')); };
+      document.head.appendChild(s);
+    }));
+  }
+  function qrDraw(cv, text) {
+    const q = window.qrcode(0, 'L'); q.addData(text, 'Alphanumeric'); q.make();
+    const m = q.getModuleCount(), quiet = 4, cell = Math.max(2, Math.floor(cv.width / (m + quiet * 2))), off = Math.floor((cv.width - cell * m) / 2);
+    const g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, cv.width, cv.height); g.fillStyle = '#000';
+    for (let r = 0; r < m; r++) for (let c = 0; c < m; c++) if (q.isDark(r, c)) g.fillRect(off + c * cell, off + r * cell, cell, cell);
+    return m;
+  }
+  PK.qr = { b45enc, b45dec, payload: qrPayload, unpack: qrUnpack, frames: qrFrames, feed: qrFeed, lib: qrLib, draw: qrDraw };
+
+  async function qrSend() {
+    try { await qrLib(); } catch (e) { toast(t('Fitur QR belum bisa dimuat — cek koneksi, lalu coba lagi.'), 3600); return; }
+    const frames = qrFrames(await qrPayload()); const n = frames.length; const secs = Math.ceil(n / 5);
+    openModal(`<h2>${t('Kirim progres ke HP lain')}</h2>
+      <p class="muted" style="margin:0 0 10px">${t('Di HP baru: buka Xiǎobù → Terima lewat QR, lalu arahkan kameranya ke kode ini sampai selesai.')}</p>
+      <canvas id="pk-qr" class="pk-qr" width="720" height="720" aria-label="QR"></canvas>
+      <p class="small muted" style="text-align:center;margin:8px 0 0"><span id="pk-qrn">1</span> / ${n} · ${t('satu putaran ±{s} detik', { s: secs })}</p>
+      <p class="small muted" style="text-align:center;margin:4px 0 0">${t('Naikkan kecerahan layar. Progres tidak dikirim ke internet.')}</p>`, 'pk-qrsheet');
+    const cv = document.getElementById('pk-qr'), lab = document.getElementById('pk-qrn'); let k = 0;
+    S.lastBackup = Date.now(); save();
+    const tick = () => { if (!document.body.contains(cv)) return; try { qrDraw(cv, frames[k]); lab.textContent = k + 1; } catch (e) {} k = (k + 1) % n; setTimeout(tick, 200); };
+    tick();
+  }
+  async function qrRecv() {
+    try { await qrLib(); } catch (e) { toast(t('Fitur QR belum bisa dimuat — cek koneksi, lalu coba lagi.'), 3600); return; }
+    openModal(`<h2>${t('Terima progres lewat QR')}</h2>
+      <p class="muted" style="margin:0 0 10px">${t('Di HP lama: buka Saya → Kirim lewat QR. Arahkan kamera ini ke kodenya dan tahan sampai penuh.')}</p>
+      <div class="pk-cam"><video id="pk-vid" playsinline muted></video></div>
+      <div class="pk-bar"><i id="pk-qrbar"></i></div>
+      <p class="small muted" style="text-align:center;margin:6px 0 0" id="pk-qrst">${t('Menyalakan kamera…')}</p>`, 'pk-qrsheet');
+    const vid = document.getElementById('pk-vid'), bar = document.getElementById('pk-qrbar'), stEl = document.getElementById('pk-qrst');
+    let stream = null; const stop = () => { try { stream && stream.getTracks().forEach(x => x.stop()); } catch (e) {} };
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('nocam');
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
+    } catch (e) { if (stEl) stEl.textContent = t('Kamera tidak bisa dipakai. Izinkan akses kamera, atau pakai Tempel kode progres.'); return; }
+    if (!document.body.contains(vid)) { stop(); return; }
+    vid.srcObject = stream; try { await vid.play(); } catch (e) {}
+    stEl.textContent = t('Arahkan ke kode QR di HP lama');
+    let det = null; try { if ('BarcodeDetector' in window) det = new window.BarcodeDetector({ formats: ['qr_code'] }); } catch (e) { det = null; }
+    const cv = document.createElement('canvas'); const g = cv.getContext('2d', { willReadFrequently: true });
+    const st = { parts: {} }; let busy = false, last = 0, finished = false;
+    const scan = async now => {
+      if (finished) return;
+      if (!document.body.contains(vid)) { stop(); return; }
+      requestAnimationFrame(scan);
+      if (busy || now - last < 70 || vid.readyState < 2 || !vid.videoWidth) return;
+      busy = true; last = now; let text = '';
+      try {
+        if (det) { const r = await det.detect(vid); if (r && r[0]) text = r[0].rawValue || ''; }
+        if (!text) {
+          const w = Math.min(720, vid.videoWidth), h = Math.round(w * vid.videoHeight / vid.videoWidth); if (cv.width !== w) { cv.width = w; cv.height = h; }
+          g.drawImage(vid, 0, 0, w, h); const im = g.getImageData(0, 0, w, h); const r = window.jsQR(im.data, w, h, { inversionAttempts: 'dontInvert' }); if (r) text = r.data;
+        }
+      } catch (e) { if (det) det = null; }
+      busy = false; if (!text) return;
+      const r = qrFeed(st, text);
+      if (r.total) { bar.style.width = (r.have / r.total * 100) + '%'; stEl.textContent = t('{a} dari {b} bagian', { a: r.have, b: r.total }); }
+      if (r.done) {
+        finished = true; stop(); buzz('win');
+        try { const d = await qrUnpack(r.bytes); if (!d || !d.cards || !d.settings) throw 0; closeModal(); pkOfferRestore(d); }
+        catch (e) { stEl.textContent = t('⚠️ Kode progres tidak valid'); }
+      }
+    };
+    requestAnimationFrame(scan);
+  }
+  /* tombol "Terima lewat QR" di layar perkenalan (HP baru biasanya mulai dari sini) */
+  function pkOnbQr() {
+    const b = document.querySelector('#onb [data-a="onbpaste"]'); if (!b || document.querySelector('#onb [data-pk="qrrecv"]')) return;
+    const n = document.createElement('button'); n.className = b.className; n.dataset.pk = 'qrrecv'; n.innerHTML = `${ICON('grid')} ${t('Terima lewat QR')}`;
+    b.parentNode.insertBefore(n, b);
+  }
+  document.addEventListener('click', () => setTimeout(() => { try { pkOnbQr(); } catch (e) {} }, 60), true);
 
   /* ---------- langit harian: "Aliran Nada" ----------
      Medan aliran dari derau berbenih (benih = tanggal). Tiap garis membawa satu nada dan condong mengikuti

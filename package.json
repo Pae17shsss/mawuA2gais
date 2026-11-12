@@ -8,5 +8,9 @@
     "cek": "node build.mjs cek",
     "rilis": "node build.mjs rilis",
     "uji": "node uji.mjs"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "qrcode-generator": "^1.4.4"
   }
 }

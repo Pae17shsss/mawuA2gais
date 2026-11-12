@@ -2,3 +2,8 @@ mdict.js berisi data turunan dari:
 - CC-CEDICT (MDBG), lisensi Creative Commons Attribution-Share Alike 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . File mdict.js (turunan) dibagikan dengan lisensi yang sama.
 - Unihan kMandarin / kHanyuPinlu melalui proyek pinyin-data (mozillazg), lisensi MIT.
 Pinyin dinormalisasi ke bacaan Taiwan oleh Xiaobu.
+
+qr.js berisi pustaka pihak ketiga tanpa perubahan:
+- qrcode-generator 1.4.4 (Kazuhiko Arase), lisensi MIT: https://github.com/kazuhikoarase/qrcode-generator
+- jsQR 1.4.0 (Cosmo Wolfe), lisensi Apache-2.0: https://github.com/cozmo/jsQR - http://www.apache.org/licenses/LICENSE-2.0
+'QR Code' adalah merek dagang terdaftar DENSO WAVE INCORPORATED.

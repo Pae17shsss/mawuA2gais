@@ -43,6 +43,35 @@
   });
   await T('kode progres: format lama XB0 masih terbaca', async () => { const d = await readCode('XB0:' + btoa(JSON.stringify({ cards: { 1: { iv: 1 } }, settings: {} }))); eq(d.cards[1].iv, 1); });
 
+  /* ---------- pindah HP lewat QR ---------- */
+  await T('QR: base45 bolak-balik untuk semua panjang dan nilai byte', () => {
+    for (const n of [0, 1, 2, 3, 255, 256, 1001]) { const a = new Uint8Array(n); for (let i = 0; i < n; i++) a[i] = (i * 151 + 7) & 255; const b = PK.qr.b45dec(PK.qr.b45enc(a)); eq(b.length, n, 'panjang ' + n); for (let i = 0; i < n; i++) if (a[i] !== b[i]) throw new Error('byte ' + i + ' pada panjang ' + n); }
+    const all = new Uint8Array(512); for (let i = 0; i < 512; i++) all[i] = i < 256 ? i : 255; const s = PK.qr.b45enc(all); ya(/^[0-9A-Z $%*+\-./:]*$/.test(s), 'di luar abjad alfanumerik QR');
+  });
+  await T('QR: bingkai acak + berulang tersusun kembali jadi progres yang sama', async () => {
+    const besar = JSON.parse(JSON.stringify(S)); besar.cards = {}; for (let i = 0; i < 600; i++) besar.cards[i] = { iv: i % 30, ef: 2.4, r: i % 7, lp: 0, st: 2, due: 1794400000000 + i * 977, s: 3.1 + i / 10, d: 5.2, lr: 1794000000000 + i * 131, ph: 'rev', lrated: 1, h: W[i].w };
+    const fr = PK.qr.frames(await PK.qr.payload(besar)); ya(fr.length >= 3, 'harus lebih dari satu bingkai: ' + fr.length);
+    const urut = fr.concat(fr.slice(0, 2)).sort(() => Math.random() - 0.5); const st = { parts: {} }; let r;
+    for (const f of urut) { r = PK.qr.feed(st, f); if (r.done) break; }
+    ya(r && r.done, 'tidak selesai'); eq(JSON.stringify(await PK.qr.unpack(r.bytes)), JSON.stringify(besar));
+  });
+  await T('QR: teks asing diabaikan, bingkai rusak ditolak oleh CRC', async () => {
+    const fr = PK.qr.frames(await PK.qr.payload({ cards: { 1: { iv: 1 } }, settings: {}, isi: 'x'.repeat(4000) + Math.random() }));
+    const st = { parts: {} }; eq(PK.qr.feed(st, 'https://contoh.id').ok, false); eq(PK.qr.feed(st, 'XQ1:rusak').ok, false);
+    const p = fr[0].split(':'); const body = p.slice(5, -1).join(':'); const ganti = body[10] === '0' ? '1' : '0';
+    const jelek = p.slice(0, 5).join(':') + ':' + body.slice(0, 10) + ganti + body.slice(11) + ':';
+    let r; [jelek].concat(fr.slice(1)).forEach(f => { r = PK.qr.feed(st, f); });
+    ya(r.rusak && !r.done, 'bingkai rusak harus ditolak');
+    fr.forEach(f => { r = PK.qr.feed(st, f); }); ya(r.done, 'setelah ditolak, pindai ulang harus berhasil');
+  });
+  await T('QR: gambar kode terbaca kembali oleh pembaca (tiap bingkai)', async () => {
+    await PK.qr.lib(); ya(window.qrcode && window.jsQR, 'pustaka QR tidak termuat');
+    const fr = PK.qr.frames(await PK.qr.payload()); const cv = document.createElement('canvas'); cv.width = cv.height = 720; const g = cv.getContext('2d');
+    const st = { parts: {} }; let r, modul = 0;
+    for (const f of fr.slice(0, 6)) { modul = PK.qr.draw(cv, f); const im = g.getImageData(0, 0, 720, 720); const d = window.jsQR(im.data, 720, 720, { inversionAttempts: 'dontInvert' }); ya(d, 'bingkai tidak terbaca'); eq(d.data, f, 'isi bingkai'); r = PK.qr.feed(st, d.data); }
+    ya(modul <= 81, 'kode terlalu rapat: ' + modul + ' modul'); if (fr.length <= 6) { ya(r.done, 'tidak selesai'); eq(JSON.stringify(await PK.qr.unpack(r.bytes)), JSON.stringify(S)); }
+  });
+
   /* ---------- gabung ---------- */
   await T('gabung: ulangan terbaru menang, tidak ada kartu hilang', () => {
     const a = { cards: { 1: { lr: 100, r: 1, x: 'a' }, 2: { lr: 300, r: 2, x: 'a' } }, days: { d1: { ok: 5, xp: 10 } }, xp: 50, streak: { cur: 2, best: 4, last: '2026-11-01' }, settings: { rate: 1 }, stories: { 我: 'punyaku' } };
