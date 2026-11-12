@@ -1,7 +1,7 @@
-# Xiaobu Kelas - skrip build (tanpa Node).
+﻿# Xiaobu Kelas - skrip build (tanpa Node).
 #
 #   .\build.ps1            menyusun ulang app.js dari src\app\*.js (urut nama file)
-#   .\build.ps1 -Rilis     + menyalin file siap-unggah ke rilis\xiaobu-kelas-<versi>-netlify
+#   .\build.ps1 -Rilis     + menyalin file siap-unggah ke rilis\xiaobu-kelas-<versi>-web
 #   .\build.ps1 -Cek       hanya memeriksa: apakah app.js sama dengan gabungan src\app ?
 #
 # Sumber kebenaran kode ada di src\app. Jangan menyunting app.js langsung: ia ditimpa setiap build.
@@ -46,7 +46,7 @@ if ($Rilis) {
   $ver = 'v1.7'
   $m = [regex]::Match($out, "const KLS_VER = 'V([0-9.]+)'")
   if ($m.Success) { $ver = 'v' + $m.Groups[1].Value }
-  $dest = Join-Path $root "rilis\xiaobu-kelas-$ver-netlify"
+  $dest = Join-Path $root "rilis\xiaobu-kelas-$ver-web"
   if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
   New-Item -ItemType Directory -Force $dest | Out-Null
   $files = 'index.html','app.js','app.css','peak.js','peak.css','qr.js','data.js','sd.js','ctx.js','tocfl.js','hw.js','mdict.js','sw.js',

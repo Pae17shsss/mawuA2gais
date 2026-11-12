@@ -50,8 +50,10 @@ console.log(`app.js dirakit dari ${n} file (${text.length.toLocaleString('id-ID'
 
 if (mode === 'rilis') {
   const ver = (text.match(/const KLS_VER = 'V([0-9.]+)'/) || [])[1] || '0';
-  const dest = path.join(root, 'rilis', `xiaobu-kelas-v${ver}-netlify`);
+  const dest = path.join(root, 'rilis', `xiaobu-kelas-v${ver}-web`);
   fs.rmSync(dest, { recursive: true, force: true }); fs.mkdirSync(dest, { recursive: true });
+  fs.writeFileSync(path.join(dest, '.nojekyll'), '');                      // GitHub Pages: sajikan file apa adanya
+  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `folder=${path.relative(root, dest).replace(/\\/g, '/')}\n`);
   const h = crypto.createHash('sha256');
   for (const f of DEPLOY) { const p = path.join(root, f); if (!fs.existsSync(p)) throw new Error('file rilis tidak ada: ' + f); h.update(f); h.update(fs.readFileSync(p)); }
   const stamp = 'k' + h.digest('hex').slice(0, 8);
