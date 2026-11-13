@@ -227,9 +227,11 @@
     let el = document.getElementById('plsoal');
     if (q.end) { if (el) el.remove(); return; }
     if (SES || SPK) return;
+    const sayTxt = typeof q.say === 'string' ? q.say.slice(0, 120) : '';
     if (!el) { el = document.createElement('div'); el.id = 'plsoal'; el.className = 'pl-soal'; el.setAttribute('role', 'dialog'); document.body.appendChild(el); el.addEventListener('click', e => { if (e.target.closest('[data-x]')) el.remove(); }); closeModal(); }
     el.innerHTML = `<div class="pl-stop"><span class="small muted">🎤 ${esc(String(q.ti || t('Tes lisan')).slice(0, 60))} · ${+q.i || 1}/${+q.n || 1}</span><button class="btn ghost" data-x="1" aria-label="${t('Tutup')}">✕</button></div>
-      <div class="pl-sbody"><p class="pl-sask">${esc(String(q.ask || '').slice(0, 120))}</p><div class="pl-sbig ${q.hz ? 'hz' : ''}">${esc(String(q.big || '').slice(0, 200)).replace(/\n/g, '<br>')}</div></div>`;
+      <div class="pl-sbody"><p class="pl-sask">${esc(String(q.ask || '').slice(0, 120))}</p>${sayTxt ? `<button class="pl-mic" data-say="1" aria-label="${t('Putar suara')}">${ICON('speaker')}</button>` : ''}${q.big ? `<div class="pl-sbig ${q.hz ? 'hz' : ''}">${esc(String(q.big).slice(0, 200)).replace(/\n/g, '<br>')}</div>` : ''}</div>`;
+    if (sayTxt) { el.querySelector('[data-say]').onclick = () => TTS.speak(sayTxt); setTimeout(() => { if (el.isConnected) TTS.speak(sayTxt); }, 350); }
   }
   /* hasil tes lisan dari guru: masuk riwayat, dan kata yang salah masuk buku kesalahan */
   function gLisan(q) {

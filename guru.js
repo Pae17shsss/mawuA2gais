@@ -257,26 +257,28 @@
     const keyS = (zh, py, tr) => `<div class="gu-keyr"><b class="hz gu-ks">${esc(zh)}</b><button class="gu-ic" data-g="saytxt" data-v="${esc(zh)}" aria-label="Putar suara">${ICON('speaker')}</button></div><p>${esc(py)}</p>${tr ? `<p class="gu-note">${esc(tr)}</p>` : ''}`;
     if (it.k === 'kal') return { tag: TL.kal, you: 'Sebutkan artinya, murid mengucapkan kalimat Mandarinnya', prompt: `<div class="gu-pmean">${esc(it.tr)}</div>`, key: keyS(it.zh, it.py, w ? 'Kata: ' + w.w + ' ' + w.p : ''), stu: { ask, big: it.tr } };
     if (it.k === 'baca') return { tag: TL.baca, you: 'Murid membaca kalimat ini dengan lantang', prompt: sent(it.zh), key: keyS(it.zh, it.py, it.tr), stu: { ask, big: it.zh, hz: 1 } };
-    if (it.k === 'tj') return { tag: TL.tj, you: 'Tanyakan ini ke murid', prompt: sent(it.zh, it.py) + `<p class="gu-note">${esc(it.tr)}</p><button class="gu-ic" data-g="saytxt" data-v="${esc(it.zh)}" aria-label="Putar pertanyaan">${ICON('speaker')}</button>`, key: `<div class="gu-keyr"><b class="hz gu-ks">${esc(it.tpl || '—')}</b></div><p>${esc(it.tplpy)}</p><p class="gu-note">Pola jawaban dari ${esc(lnShort(it.n))}. Isinya bebas, asal polanya benar.</p>`, stu: { ask, big: '🎧' } };
-    if (it.k === 'dlg') return { tag: TL.dlg, you: it.cue ? `Anda (${it.cue.sp}) mengucapkan baris ini, lalu murid (${it.sp}) menjawab` : `Murid (${it.sp}) membuka dialog`, prompt: it.cue ? sent(it.cue.zh, it.cue.py) + `<p class="gu-note">${esc(it.cue.tr)}</p><button class="gu-ic" data-g="saytxt" data-v="${esc(it.cue.zh)}" aria-label="Putar baris Anda">${ICON('speaker')}</button>` : `<div class="gu-pmean">${esc(it.tr)}</div>`, key: keyS(it.zh, it.py, it.tr), stu: { ask, big: it.tr } };
+    if (it.k === 'tj') return { tag: TL.tj, you: 'Tanyakan ini ke murid', prompt: sent(it.zh, it.py) + `<p class="gu-note">${esc(it.tr)}</p><button class="gu-ic" data-g="saytxt" data-v="${esc(it.zh)}" aria-label="Putar pertanyaan">${ICON('speaker')}</button>`, key: `<div class="gu-keyr"><b class="hz gu-ks">${esc(it.tpl || '—')}</b></div><p>${esc(it.tplpy)}</p><p class="gu-note">Pola jawaban dari ${esc(lnShort(it.n))}. Isinya bebas, asal polanya benar.</p>`, stu: { ask, big: '', say: it.zh } };
+    if (it.k === 'dlg') return { tag: TL.dlg, you: it.cue ? `Anda (${it.cue.sp}) mengucapkan baris ini, lalu murid (${it.sp}) menjawab` : `Murid (${it.sp}) membuka dialog`, prompt: it.cue ? sent(it.cue.zh, it.cue.py) + `<p class="gu-note">${esc(it.cue.tr)}</p><button class="gu-ic" data-g="saytxt" data-v="${esc(it.cue.zh)}" aria-label="Putar baris Anda">${ICON('speaker')}</button>` : `<div class="gu-pmean">${esc(it.tr)}</div>`, key: keyS(it.zh, it.py, it.tr), stu: { ask, big: it.tr, say: it.cue ? it.cue.zh : '' } };
     const prompt = mode === 'mean' ? `<div class="gu-pmean">${esc(wMeanS(it.w))}</div>` : mode === 'audio' ? `<button class="gu-play" data-g="say" data-v="${it.w}" aria-label="Putar suara">${ICON('speaker')}</button>` : `<div class="gu-phz hz">${esc(w.w)}</div>${mode === 'hzpy' ? `<div class="gu-ppy">${esc(w.p)}</div>` : ''}`;
-    return { tag: TL[it.k], you: ask, prompt, key: keyW(), stu: mode === 'mean' ? { ask, big: wMeanS(it.w) } : mode === 'audio' ? { ask, big: '🔊' } : { ask, big: w.w + (mode === 'hzpy' ? '\n' + w.p : ''), hz: 1 } };
+    return { tag: TL[it.k], you: ask, prompt, key: keyW(), stu: mode === 'mean' ? { ask, big: wMeanS(it.w) } : mode === 'audio' ? { ask, big: '', say: w.w } : { ask, big: w.w + (mode === 'hzpy' ? '\n' + w.p : ''), hz: 1 } };
   }
   function mirror(end) {
     if (!U.online) return; if (end) return send({ t: 'soal', end: 1 });
     const o = U.oral; if (!o || !G.draft.mirror) return; const T = G.tests.find(x => x.id === o.id); const v = oralView(T.items[o.i]);
-    send({ t: 'soal', ti: T.ti, i: o.i + 1, n: T.items.length, ask: v.stu.ask, big: v.stu.big, hz: v.stu.hz ? 1 : 0 });
+    send({ t: 'soal', ti: T.ti, i: o.i + 1, n: T.items.length, ask: v.stu.ask, big: v.stu.big, hz: v.stu.hz ? 1 : 0, say: v.stu.say || '' });
   }
   function vOral() {
     const o = U.oral; const T = G.tests.find(x => x.id === o.id); const it = T.items[o.i]; const v = oralView(it);
-    if (o.show) return `<section class="gu-stu"><p>${esc(v.stu.ask)}</p><div class="${v.stu.hz ? 'gu-phz hz' : 'gu-pmean'}">${esc(v.stu.big).replace(/\n/g, '<br>')}</div><button class="gu-btn" data-g="oshow">Kembali ke layar guru</button></section>`;
+    if (o.show) return `<section class="gu-stu"><p>${esc(v.stu.ask)}</p>${v.stu.say ? `<button class="gu-play" data-g="saytxt" data-v="${esc(v.stu.say)}" aria-label="Putar suara">${ICON('speaker')}</button>` : ''}${v.stu.big ? `<div class="${v.stu.hz ? 'gu-phz hz' : 'gu-pmean'}">${esc(v.stu.big).replace(/\n/g, '<br>')}</div>` : ''}<button class="gu-btn" data-g="oshow">Kembali ke layar guru</button></section>`;
     return `<section class="gu-oral"><div class="gu-otop"><button class="gu-btn ghost" data-g="oquit">✕ Akhiri</button><span>${o.i + 1} / ${T.items.length}</span><span class="gu-red"><b>${o.det.filter(x => x && x[0]).length}</b> benar</span></div>
       <div class="gu-ocard"><p class="gu-eyebrow"><span class="hz">${v.tag[0]}</span> ${esc(v.you)}</p>${v.prompt}
         <div class="gu-row" style="justify-content:center;margin-top:4px"><button class="gu-btn" data-g="oshow">Balik layar ke murid</button>${G.draft.mirror && U.online ? '<span class="gu-note" style="margin:0;align-self:center">· tampil juga di HP murid</span>' : ''}</div></div>
+      ${zhVoice() ? '' : `<p class="gu-note gu-red">HP ini belum punya suara bahasa Mandarin, jadi tombol suara bisa diam. Pasang suara Mandarin (Taiwan) di Pengaturan HP → Teks ke ucapan, lalu buka ulang app ini.</p>`}
       <div class="gu-key"><p class="gu-eyebrow">${it.k === 'tj' ? 'Pola jawaban' : 'Kunci jawaban'}</p>${v.key}</div>
       <div class="gu-tags" role="group" aria-label="Catatan penilaian"><span class="gu-note" style="margin:0">Yang perlu diperbaiki (boleh kosong):</span>${OTAGS.map(k => `<button class="gu-chip ${o.tags.includes(k) ? 'on' : ''}" data-g="otag" data-v="${k}" aria-pressed="${o.tags.includes(k)}">${k}</button>`).join('')}</div>
       <div class="gu-grade"><button class="no" data-g="ograde" data-v="0">✗<span>Salah</span></button><button class="half" data-g="ograde" data-v="60">△<span>Hampir</span></button><button class="ok" data-g="ograde" data-v="100">✓<span>Benar</span></button></div></section>`;
   }
+  const zhVoice = () => { try { return !TTS.ok ? false : !!(TTS.voice && /^(zh|cmn)/i.test(TTS.voice.lang || '')) || (TTS.cloud && TTS.cloud.enabled()); } catch (e) { return true; } };
   function oralGrade(pct) {
     const o = U.oral; const T = G.tests.find(x => x.id === o.id); o.det[o.i] = [pct >= 80 ? 1 : 0, 0, pct, o.tags.slice()]; o.tags = []; o.i++;
     if (o.i >= T.items.length) return oralEnd(true); draw(); scrollTo(0, 0); mirror();
@@ -333,8 +335,8 @@
   /* ---------- aksi ---------- */
   const A = {
     tab: b => { U.tab = b.dataset.v; U.les = U.tab === 'materi' ? U.les : null; draw(); scrollTo(0, 0); },
-    say: b => { const w = W[+b.dataset.v]; if (w) say(w); },
-    saytxt: b => { try { TTS.speak(b.dataset.v); } catch (e) {} },
+    say: b => { const w = W[+b.dataset.v]; if (w) { unlock(); say(w); } },
+    saytxt: b => { try { unlock(); TTS.speak(b.dataset.v); } catch (e) {} },
     sharetest: async b => { const T = G.tests.find(x => x.id === b.dataset.v); if (T && await share({ title: 'Xiǎobù', text: 'Tes dari gurumu: ' + T.ti, url: testUrl(T) })) { if (T.st === 'antre') T.st = 'terkirim'; saveG(); draw(); } },
     share: async () => { const url = linkUrl(); try { if (navigator.share) return await navigator.share({ title: 'Xiǎobù Guru', text: 'Buka tautan ini di HP untuk tersambung dengan gurumu di Xiǎobù:', url }); await navigator.clipboard.writeText(url); toast('Tautan disalin'); } catch (e) { if (e && e.name !== 'AbortError') toast(url, 6000); } },
     recode: () => { if (!U.recode) { U.recode = true; return draw(); } U.recode = false; disconnect(); G.code = newCode(); saveG(); connect(); draw(); },
