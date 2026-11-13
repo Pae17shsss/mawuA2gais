@@ -213,12 +213,37 @@
     if (p.t === 'halo') return gHello();
     if (p.t === 'ack') { g.out = g.out.filter(r => r.id !== p.id); save(); return gPaint(); }
     if (p.t === 'pesan' && typeof p.txt === 'string') { g.msg = { txt: p.txt.slice(0, 300), at: Date.now() }; save(); toast('💌 ' + t('Guru') + ': ' + esc(g.msg.txt), 6000, 'guru'); return decorate(); }
+    if (p.t === 'soal') return gSoal(p);
+    if (p.t === 'lisan' && p.r && p.r.id) return gLisan(p);
     if (p.t === 'tes' && p.tes && Array.isArray(p.tes.items)) {
       const T = p.tes; const items = T.items.filter(x => x && W[x.w] && (x.k === 'ucap' || G_TYPES.includes(x.k))).slice(0, 60).map(x => ({ k: x.k, w: +x.w }));
       if (!items.length) return;
       g.pend = { id: String(T.id).slice(0, 24), ti: String(T.ti || '').slice(0, 80), note: String(T.note || '').slice(0, 200), items, at: Date.now() }; save();
       gSend({ t: 'terima', id: g.pend.id }); gOffer(); decorate();
     }
+  }
+  /* tes lisan: soal yang sedang ditanyakan guru ikut tampil di HP murid */
+  function gSoal(q) {
+    let el = document.getElementById('plsoal');
+    if (q.end) { if (el) el.remove(); return; }
+    if (SES || SPK) return;
+    if (!el) { el = document.createElement('div'); el.id = 'plsoal'; el.className = 'pl-soal'; el.setAttribute('role', 'dialog'); document.body.appendChild(el); el.addEventListener('click', e => { if (e.target.closest('[data-x]')) el.remove(); }); closeModal(); }
+    el.innerHTML = `<div class="pl-stop"><span class="small muted">🎤 ${esc(String(q.ti || t('Tes lisan')).slice(0, 60))} · ${+q.i || 1}/${+q.n || 1}</span><button class="btn ghost" data-x="1" aria-label="${t('Tutup')}">✕</button></div>
+      <div class="pl-sbody"><p class="pl-sask">${esc(String(q.ask || '').slice(0, 120))}</p><div class="pl-sbig ${q.hz ? 'hz' : ''}">${esc(String(q.big || '').slice(0, 200)).replace(/\n/g, '<br>')}</div></div>`;
+  }
+  /* hasil tes lisan dari guru: masuk riwayat, dan kata yang salah masuk buku kesalahan */
+  function gLisan(q) {
+    const g = gS(); const r = q.r; const id = String(r.id).slice(0, 24); const dup = g.log.some(x => x.id === id);
+    const salah = (Array.isArray(q.salah) ? q.salah : []).filter(i => W[i]).slice(0, 60);
+    if (!dup) salah.forEach(i => misNote({ type: 'mc_mean', wid: +i }, false));
+    g.log = [{ id, ti: String(r.ti || t('Tes lisan')).slice(0, 80), n: +r.n || 0, ok: +r.ok || 0, spk: null, at: +r.at || Date.now(), lisan: 1 }].concat(g.log.filter(x => x.id !== id)).slice(0, 30);
+    save(); gSoal({ end: 1 }); decorate();
+    const tags = q.tags && typeof q.tags === 'object' ? Object.keys(q.tags).slice(0, 6).map(k => `<span class="chip">${esc(k)} ×${+q.tags[k] || 1}</span>`).join('') : '';
+    if (SES || SPK) return toast(t('🎤 Hasil tes lisan: {a}/{n}', { a: g.log[0].ok, n: g.log[0].n }), 5000, 'guru');
+    openModal(`<div class="pl-offer">${mascot(g.log[0].n && g.log[0].ok / g.log[0].n >= 0.8 ? 'wow' : 'joy', 96)}<h2>${t('Hasil tes lisan')}</h2><p><b>${esc(g.log[0].ti)}</b></p><div class="kpis"><div class="kpi"><b>${g.log[0].ok}/${g.log[0].n}</b><span>${t('benar')}</span></div></div>
+      ${tags ? `<p class="small muted">${t('Catatan guru')}:</p><div class="pl-list" style="justify-content:center">${tags}</div>` : ''}
+      ${salah.length ? `<p class="muted">${t('{n} kata yang salah masuk ke Buku kesalahan.', { n: salah.length })}</p>` : ''}
+      <div class="row wrap" style="justify-content:center"><button class="btn sec" data-a="close">${t('Tutup')}</button>${salah.length ? `<button class="btn pri" data-a="misrun">${t('Ulang sekarang')}</button>` : ''}</div></div>`);
   }
   function gOffer() {
     const T = gS().pend; if (!T) return;
@@ -317,7 +342,7 @@
   }
   function guruCard() {
     const g = gS();
-    const log = g.log.slice(0, 5).map(r => `<div class="set"><span class="grow" style="min-width:0">${esc(r.ti || t('Tes kosakata'))}<span class="small muted" style="display:block">${new Date(r.at).toLocaleDateString(LOCALE[S.settings.ui] || 'id-ID', { day: 'numeric', month: 'short' })}</span></span><b>${r.ok}/${r.n}${r.spk !== null && r.spk !== undefined ? ' · 🎤 ' + r.spk + '%' : ''}</b></div>`).join('');
+    const log = g.log.slice(0, 5).map(r => `<div class="set"><span class="grow" style="min-width:0">${esc(r.ti || t('Tes kosakata'))}<span class="small muted" style="display:block">${new Date(r.at).toLocaleDateString(LOCALE[S.settings.ui] || 'id-ID', { day: 'numeric', month: 'short' })}</span></span><b>${r.lisan ? '🎤 ' : ''}${r.ok}/${r.n}${r.spk !== null && r.spk !== undefined ? ' · 🎤 ' + r.spk + '%' : ''}</b></div>`).join('');
     return `<section class="card glass pl-x pl-card" id="pl-guru"><div class="row" style="gap:12px;align-items:center">${TILE('class', 'lg tint c4')}<div class="grow" style="min-width:0"><h2 style="margin:0">${t('Guru saya')} · <span class="hz">老師</span></h2><p class="small muted" style="margin:2px 0 0">${t('Sambungkan ke app Guru: guru melihat apa yang sudah kamu pelajari dan mengirim tes ke HP ini.')}</p></div></div>
       ${g.code ? `<div class="set" style="margin-top:12px"><span class="grow">${t('Kode guru')} <b>${esc(g.code)}</b><span class="pl-gst" id="pl-gst" style="display:block">${gStatus()}</span></span><button class="btn ghost small" data-a="gururetry">${ICON('refresh')}</button><button class="btn sec small" data-a="guruoff">${t('Putuskan')}</button></div>`
       : `<div class="row" style="margin-top:12px;gap:8px"><input class="search grow" id="pl-gcode" placeholder="${t('Kode dari app Guru')}" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="8" style="min-width:0;text-transform:uppercase"><button class="btn pri" data-a="guruset">${t('Sambungkan')}</button></div>`}
@@ -349,6 +374,8 @@
       const tes = u.searchParams.get('tes'); let clean = false;
       if (c.length >= 4) { gS().code = c; save(); u.searchParams.delete('guru'); clean = true; toast(t('Kode guru {c} tersimpan — menyambungkan…', { c }), 3500); }
       if (tes) { u.searchParams.delete('tes'); clean = true; try { const T = unb64u(tes); setTimeout(() => gMsg({ t: 'tes', tes: T }), 600); } catch (e) { toast(t('Tautan tes tidak terbaca.')); } }
+      const ls = u.searchParams.get('lisan');
+      if (ls) { u.searchParams.delete('lisan'); clean = true; try { const q = unb64u(ls); setTimeout(() => gMsg(Object.assign({ t: 'lisan' }, q)), 600); } catch (e) { toast(t('Tautan hasil tidak terbaca.')); } }
       if (clean) history.replaceState(null, '', u.pathname + u.search + u.hash);
       setTimeout(() => { if (gS().code && navigator.onLine !== false) gConnect(); }, 3000);
       document.addEventListener('visibilitychange', () => { if (!document.hidden && gS().code && !GL.ch && !GL.busy && navigator.onLine !== false) gConnect(); });

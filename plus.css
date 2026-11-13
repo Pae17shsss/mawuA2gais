@@ -37,3 +37,11 @@ body.pl-lock{overflow:hidden}
 .pl-res.ok{border-color:var(--ok)} .pl-res.part{border-color:#e0a12a} .pl-res.bad{border-color:var(--bad)}
 .pl-pct{font-size:26px;font-variant-numeric:tabular-nums}
 .pl-foot{display:flex;justify-content:space-between;gap:10px;max-width:560px;width:100%;margin:0 auto}
+
+/* ---------- soal tes lisan yang tampil di HP murid ---------- */
+.pl-soal{position:fixed;inset:0;z-index:118;display:flex;flex-direction:column;background:var(--bg,#fff7fa);color:var(--ink);padding:calc(10px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.pl-stop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pl-sbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center}
+.pl-sask{margin:0;font-size:17px;color:var(--ink2)}
+.pl-sbig{font-size:38px;font-weight:700;line-height:1.3;max-width:20ch}
+.pl-sbig.hz{font-size:64px}

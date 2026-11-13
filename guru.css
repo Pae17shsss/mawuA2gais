@@ -175,3 +175,15 @@ body.gu input{width:100%;box-sizing:border-box;min-height:46px;padding:0 14px;bo
 .gu-tabs svg{width:22px;height:22px}
 .gu-tabs button.on{color:var(--ga);background:var(--ga2)}
 @media (prefers-reduced-motion:no-preference){.gu-pb i,.gu-dots i{transition:width .3s,background .2s}}
+
+/* ---------- tes lisan: kalimat, catatan penilaian ---------- */
+.gu-psent{font-size:30px;line-height:1.35;font-weight:600}
+.gu-ks{font-size:20px!important;line-height:1.4;flex:1}
+.gu-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.gu-tags .gu-chip.on{background:var(--gr);border-color:var(--gr);color:#fff}
+@media (prefers-color-scheme:dark){.gu-tags .gu-chip.on{color:#1a0b0a}}
+.gu-check{display:flex;align-items:center;gap:10px;min-height:44px;font-size:14px;margin-bottom:6px}
+body.gu .gu-check input{width:20px;min-height:20px;height:20px;padding:0;accent-color:var(--ga);flex:none}
+.gu-item.long b{font-size:17px;font-weight:600}
+.gu-item .gu-red{display:block;font-size:12px}
+.gu-stu .gu-pmean{font-size:40px}

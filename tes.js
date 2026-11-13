@@ -166,6 +166,17 @@
     endSession(false, true); await sl(80); S.guru = JSON.parse(keep);
   });
 
+  await T('guru: hasil tes lisan masuk riwayat dan kata yang salah masuk buku kesalahan (sekali saja)', async () => {
+    const G = XB_PLUS.guru; const keepG = JSON.stringify(G.state()); const keepM = S.mis; S.mis = {}; const ids = A2_ORDER.slice(0, 2);
+    const pesan = { t: 'lisan', r: { id: 'lis1', ti: 'Dialog', n: 5, ok: 3, at: 1 }, salah: ids.concat([9e9]), tags: { Nada: 2 } };
+    G.msg(pesan); await sl(60); const g = G.state();
+    eq(g.log[0].id, 'lis1', 'riwayat'); eq(g.log[0].lisan, 1, 'ditandai lisan'); eq(XB_PLUS.mis.list().length, 2, 'kata tak dikenal dibuang');
+    G.msg(pesan); await sl(60); eq(XB_PLUS.mis.list()[0][1].n, 1, 'kiriman ulang tidak menggandakan kesalahan'); eq(g.log.filter(x => x.id === 'lis1').length, 1, 'riwayat tidak ganda');
+    G.msg({ t: 'soal', ti: 'Dialog', i: 1, n: 5, ask: 'Katakan', big: '<b>x</b>' }); const el = document.getElementById('plsoal'); ya(el && !el.querySelector('.pl-sbig b'), 'teks soal tidak dijalankan sebagai HTML');
+    G.msg({ t: 'soal', end: 1 }); ya(!document.getElementById('plsoal'), 'layar soal ditutup');
+    closeModal(); S.mis = keepM; S.guru = JSON.parse(keepG);
+  });
+
   /* ---------- rencana & sesi ---------- */
   await T('rencana harian: kata baru 0–40', () => { const p = planToday(); ya(p && p.new >= 0 && p.new <= 40, 'new = ' + (p && p.new)); });
   await T('sesi pintar: bisa disusun, dibuka, dan ditutup', async () => {
