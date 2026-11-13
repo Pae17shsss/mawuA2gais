@@ -277,6 +277,7 @@
         if (k0) k0.insertAdjacentHTML('afterend', `<div class="notice">${GL.guru ? t('Hasil dikirim ke guru ✓') : t('Hasil disimpan — dikirim otomatis saat guru tersambung.')}</div>${more ? `<div class="row" style="justify-content:center"><button class="btn pri" id="pl-gspk">${ICON('mic')} ${t('Lanjut: bagian bicara ({n})', { n: more })}</button></div>` : ''}`);
         const b = document.getElementById('pl-gspk'); if (b) b.onclick = () => { endSession(false, true); gSpeak(); };
       }
+      if (GL.ch && GL.guru) gSend({ t: 'profil', p: gProfile() });   // guru selalu melihat keadaan sesudah sesi terakhir
     } catch (e) { console.warn('plus summary', e); }
     return r;
   };
