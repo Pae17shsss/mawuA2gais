@@ -49,7 +49,7 @@ if ($Rilis) {
   $dest = Join-Path $root "rilis\xiaobu-kelas-$ver-web"
   if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
   New-Item -ItemType Directory -Force $dest | Out-Null
-  $files = 'index.html','app.js','app.css','peak.js','peak.css','qr.js','data.js','sd.js','ctx.js','tocfl.js','hw.js','mdict.js','sw.js',
+  $files = 'index.html','app.js','app.css','peak.js','peak.css','plus.js','plus.css','guru.html','guru.js','guru.css','guru.webmanifest','qr.js','data.js','sd.js','ctx.js','tocfl.js','hw.js','mdict.js','sw.js',
            'manifest.webmanifest','netlify.toml','icon-192.png','icon-512.png','apple-touch-icon.png','LICENSES-kamus.txt'
   foreach ($f in $files) {
     $src = Join-Path $root $f

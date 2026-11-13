@@ -27,17 +27,17 @@ server.listen(0, '127.0.0.1', () => {
   const port = server.address().port;
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'xb-uji-'));
   const args = ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', `--user-data-dir=${profile}`,
-    '--window-size=412,900', '--virtual-time-budget=90000', '--dump-dom', `http://127.0.0.1:${port}/tes.html?cli=1`];
+    '--window-size=412,900', '--virtual-time-budget=150000', '--dump-dom', `http://127.0.0.1:${port}/tes.html?cli=1`];
   const child = spawn(EDGE, args, { stdio: ['ignore', 'pipe', 'ignore'] });
   let dom = ''; child.stdout.on('data', d => { dom += d; });
-  const kill = setTimeout(() => { child.kill(); }, 150000);
+  const kill = setTimeout(() => { child.kill(); }, 400000);
   child.on('close', () => {
     clearTimeout(kill); server.close();
     try { fs.rmSync(profile, { recursive: true, force: true }); } catch (e) {}
     const sum = (dom.match(/id="tes-sum"[^>]*>([^<]*)</) || [])[1] || '';
     const items = [...dom.matchAll(/<li class="(ok|no)">([^<]*)<\/li>/g)].map(m => ({ ok: m[1] === 'ok', nama: m[2] }));
     const gagal = items.filter(x => !x.ok);
-    if (!items.length || /Menjalankan/.test(sum)) { console.error('Uji tidak selesai (halaman tidak sempat berjalan sampai akhir).'); process.exit(2); }
+    if (!items.length || /Menjalankan/.test(sum)) { console.error('Uji tidak selesai (halaman tidak sempat berjalan sampai akhir).' + (items.length ? ` Terakhir selesai (${items.length}): ${items[items.length - 1].nama}` : ' Tidak ada uji yang tercatat.')); process.exit(2); }
     gagal.forEach(x => console.error('GAGAL  ' + x.nama.replace(/&amp;/g, '&')));
     console.log(`${items.length - gagal.length} lolos, ${gagal.length} gagal — ${sum}`);
     process.exit(gagal.length ? 1 : 0);

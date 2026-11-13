@@ -136,6 +136,36 @@
     finally { window.__xbQuarantine = lamaQ; SAVE_LOCK = lamaLock; }
   });
 
+  /* ---------- V1.8: buku kesalahan, sambungan guru ---------- */
+  await T('buku kesalahan: salah dicatat, dua kali benar baru dicoret', () => {
+    const P = XB_PLUS.mis; const keep = S.mis; S.mis = {};
+    const it = { type: 'mc_mean', wid: A2_ORDER[0] };
+    P.note(it, false); P.note(it, false); eq(P.list().length, 1, 'jumlah entri'); eq(P.list()[0][1].n, 2, 'hitungan salah');
+    P.note(it, true); eq(P.list().length, 1, 'sekali benar belum dicoret'); P.note(it, true); eq(P.list().length, 0, 'dua kali benar dicoret');
+    P.note({ type: 'mc_mean', wid: A2_ORDER[1], place: true }, false); eq(P.list().length, 0, 'tes penempatan tidak dicatat');
+    P.note({ type: 'hz', ch: '好' }, false); const b = P.build(); eq(b.length, 1, 'sesi ulang'); eq(b[0].type, 'hz', 'jenis soal huruf');
+    S.mis = keep;
+  });
+  await T('guru: profil murid memuat kata, 7 hari, kesalahan, dan nilai bicara', () => {
+    const p = XB_PLUS.guru.profile(); ya(Array.isArray(p.c) && p.c.length % 3 === 0, 'daftar kata'); eq(p.days.length, 7, 'hari');
+    ya(Array.isArray(p.mis) && Array.isArray(p.spk) && Array.isArray(p.rec), 'kesalahan/bicara/baru');
+  });
+  await T('guru: tautan cadangan — kode tes dan hasil terbaca kembali', () => {
+    const o = { id: 't1', ti: '老師 tes', items: [{ k: 'ucap', w: 12 }] }; eq(JSON.stringify(XB_PLUS.codec.unb64u(XB_PLUS.codec.b64u(o))), JSON.stringify(o), 'bolak-balik');
+    ya(/^[A-Za-z0-9_-]+$/.test(XB_PLUS.codec.b64u(o)), 'aman untuk URL');
+  });
+  await T('guru: tes diterima, soal tak sah dibuang, hasil mencatat jawaban pertama', async () => {
+    const G = XB_PLUS.guru; const keep = JSON.stringify(G.state()); const g = G.state(); const ids = A2_ORDER.slice(0, 3);
+    G.msg({ t: 'tes', tes: { id: 'uji1', ti: 'Uji', items: ids.map(i => ({ k: 'mc_mean', w: i })).concat([{ k: 'jahat', w: ids[0] }, { k: 'mc_mean', w: 9e9 }]) } });
+    eq(g.pend.items.length, 3, 'hanya soal sah'); closeModal();
+    G.start(); await sl(250); ya(SES && SES.opts.guru === 'uji1', 'sesi tes terbuka');
+    let n = 0; while (SES && !SES.summarized && n++ < 20) { if (!SES.answered) answer(n !== 2); SES.lastNext = 0; nextItem(); await sl(30); }
+    await sl(120); ya(SES && SES.summarized, 'sampai ringkasan');
+    eq(g.log[0].id, 'uji1', 'riwayat'); eq(g.log[0].n, 3, 'jumlah soal'); eq(g.log[0].ok, 2, 'benar = jawaban pertama saja');
+    eq(g.pend, null, 'tes tidak lagi menunggu'); eq(g.out.length, 1, 'hasil antre untuk guru'); eq(g.out[0].det.filter(Boolean).length, 3, 'rincian lengkap');
+    endSession(false, true); await sl(80); S.guru = JSON.parse(keep);
+  });
+
   /* ---------- rencana & sesi ---------- */
   await T('rencana harian: kata baru 0–40', () => { const p = planToday(); ya(p && p.new >= 0 && p.new <= 40, 'new = ' + (p && p.new)); });
   await T('sesi pintar: bisa disusun, dibuka, dan ditutup', async () => {

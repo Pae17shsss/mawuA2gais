@@ -16,9 +16,9 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const mode = process.argv[2] || 'build';
 const MARK = 'k170';
-const DEPLOY = ['index.html', 'app.js', 'app.css', 'peak.js', 'peak.css', 'qr.js', 'data.js', 'sd.js', 'ctx.js', 'tocfl.js', 'hw.js', 'mdict.js', 'sw.js',
+const DEPLOY = ['index.html', 'app.js', 'app.css', 'peak.js', 'peak.css', 'plus.js', 'plus.css', 'guru.html', 'guru.js', 'guru.css', 'guru.webmanifest', 'qr.js', 'data.js', 'sd.js', 'ctx.js', 'tocfl.js', 'hw.js', 'mdict.js', 'sw.js',
   'manifest.webmanifest', 'netlify.toml', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'LICENSES-kamus.txt'];
-const TEXT_STAMP = ['index.html', 'sw.js', 'app.js', 'peak.js'];          // file yang memuat penanda versi
+const TEXT_STAMP = ['index.html', 'sw.js', 'app.js', 'peak.js', 'guru.html', 'guru.js'];          // file yang memuat penanda versi
 
 function assemble() {
   const dir = path.join(root, 'src', 'app');
@@ -39,13 +39,13 @@ const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
 
 if (mode === 'cek') {
   if (current !== text) { console.error('BEDA: app.js tidak sama dengan src/app — jalankan: npm run build'); process.exit(1); }
-  syntax(['app.js', 'peak.js', 'sw.js', 'tes.js']);
+  syntax(['app.js', 'peak.js', 'plus.js', 'guru.js', 'sw.js', 'tes.js']);
   console.log(`OK: app.js = gabungan ${n} file; sintaks app.js, peak.js, sw.js, tes.js sah`);
   process.exit(0);
 }
 
 if (current !== text) fs.writeFileSync(target, text);
-syntax(['app.js', 'peak.js', 'sw.js', 'tes.js']);
+syntax(['app.js', 'peak.js', 'plus.js', 'guru.js', 'sw.js', 'tes.js']);
 console.log(`app.js dirakit dari ${n} file (${text.length.toLocaleString('id-ID')} karakter)${current === text ? ' — tidak berubah' : ''}; sintaks sah`);
 
 if (mode === 'rilis') {

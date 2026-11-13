@@ -1,7 +1,7 @@
 /* ========== KELAS · 華語準備級課程(一) L1–6 + 當代中文課程 第一冊 L6–16 — Xiǎobù Kelas V0.2 ==========
    Materi diambil dari PDF kelas: kosakata (inti + tambahan), dialog, grammar, latihan.
    Semua kata lesson memakai mesin yang sama (SRS, suara, arcade), tapi arti & pengecoh diambil dari lesson. */
-const KLS_VER = 'V1.7';
+const KLS_VER = 'V1.8';
 ICON_PATHS.class = '<path d="M3 8.2 12 4l9 4.2-9 4.2z"/><path d="M6.6 10v4.6c0 1.6 2.4 3 5.4 3s5.4-1.4 5.4-3V10"/><path d="M21 8.2v5.4"/>';
 ICON_PATHS.cards = '<rect x="3.2" y="6.4" width="12.4" height="14" rx="2.2"/><path d="M8.4 6.4V5a1.8 1.8 0 0 1 1.8-1.8h8.6A1.8 1.8 0 0 1 20.6 5v11.2a1.8 1.8 0 0 1-1.8 1.8h-3.2"/>';
 ICON_PATHS.mic = '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.6 11a6.4 6.4 0 0 0 12.8 0M12 17.4V21M8.6 21h6.8"/>';
